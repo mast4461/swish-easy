@@ -48,10 +48,10 @@
       "<span id="message-out"></span>"
     </p>
     <hr>
-    <a id="swish-link"><h3>Pay with Swish by clicking this link</h3></a>
-    <hr>
-    <h3>Or scan this QR code in the Swish app:</h3>
-    <div id="qrcode"></div>
+    <a id="swish-link">
+      <h3>Swish<span id="a-icon"></span></h3>
+      <div id="qrcode"></div>
+    </a>
   </div>
 
   <script>
@@ -172,6 +172,12 @@ td {
   overflow: hidden;
   display: inline-block;
   margin: auto;
+}
+#a-icon::after {
+  /* From https://stackoverflow.com/a/52058198/2463028 */
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+  margin: 0 3px 0 5px;
+  transform: scale(150%);
 }
 </style>
 
