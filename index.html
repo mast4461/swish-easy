@@ -77,7 +77,7 @@
     const amount = ifNull(params.get("a"), 0);
     const amountIsEditable = params.has("ae");
     let message = params.get("m");
-    if (message.length > 50) {
+    if (message && message.length > 50) {
       message = message.substring(0, 47) + "...";
     }
     const messageIsEditable = params.has("me");
