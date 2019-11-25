@@ -110,10 +110,11 @@
     
     function getSwishQrCodeData(p, pe, a, ae, m, me) {
       const lock = 7
-        - (pe ? 0 : 1)
-        - (ae ? 0 : 2)
-        - (me ? 0 : 4);
-      return `C${p};${a};${m};${lock}`;
+        - (p === undefined || p === null || pe ? 0 : 1)
+        - (a === undefined || a === null || ae ? 0 : 2)
+        - (m === undefined || m === null || me ? 0 : 4);
+
+      return `C${p || ""};${a || ""};${m || ""};${lock}`;
     }
 
     function getSwishLink(p, pe, a, ae, m, me) {
