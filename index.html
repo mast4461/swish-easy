@@ -42,11 +42,9 @@
   <div id="output-container" style="display: none;">
     <h1 id="title-out"></h1>
     <p>
-      <span id="amount-out"></span> kr ➞ <span id="payee-out"></span>
+      <span id="amount-out"></span> kr ➔ <span id="payee-out"></span>
     </p>
-    <p>
-      "<span id="message-out"></span>"
-    </p>
+    <p id="message-out"></p>
     <hr>
     <a id="swish-link">
       <h3>Swish<span id="a-icon"></span></h3>
@@ -103,10 +101,9 @@
     outputContainerEl.style.display = "block";
 
     setElAttr("title-out", "innerText", title);
-    setElAttr("payee-out", "innerText", payee);
-    setElAttr("amount-out", "innerText", amount);
-    setElAttr("message-out", "innerText", message);
-
+    setElAttr("payee-out", "innerText", payee === undefined || payee === null ? "?" : payee);
+    setElAttr("amount-out", "innerText", amount === undefined || amount === null ? "?" : amount);
+    setElAttr("message-out", "innerText", message ? `"${message}"` : "");
     
     function getSwishQrCodeData(p, pe, a, ae, m, me) {
       const lock = 7
