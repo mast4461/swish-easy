@@ -64,7 +64,7 @@
           </svg>
         </span>
       </h3>
-      <div id="qrcode"></div>
+      <div id="qr-code"></div>
     </a>
     <hr>
     <button onclick="showInputView()">New</button>
@@ -77,8 +77,9 @@
     const inputContainerEl = document.getElementById("input-container");
     const outputContainerEl = document.getElementById("output-container");
     const swishLinkEl = document.getElementById("swish-link");
-    const qrcodeEl = document.getElementById("qrcode");
+    const qrCodeEl = document.getElementById("qr-code");
 
+    let qrCode;
     restart();
     function restart() {
       if (window.location.href.includes("?")) {
@@ -145,12 +146,17 @@
       swishLinkEl.href = getSwishLink(payee, payeeIsEditable, amount, amountIsEditable, message, messageIsEditable);
       const swishCodeQrData = getSwishQrCodeData(payee, payeeIsEditable, amount, amountIsEditable, message, messageIsEditable);
       console.log(swishCodeQrData);
-      new QRCode(qrcodeEl, {
-        text: swishCodeQrData,
-        colorDark: "#111111",
-        colorLight: "#ffffff",
-        // correctLevel: QRCode.CorrectLevel.H
-      });
+
+      if (qrCode) {
+        qrCode.makeCode(swishCodeQrData);
+      } else {
+        qrCode = new QRCode(qrCodeEl, {
+          text: swishCodeQrData,
+          colorDark: "#111111",
+          colorLight: "#ffffff",
+          // correctLevel: QRCode.CorrectLevel.H
+        });
+      }
 
       inputContainerEl.style.display = "none";
       outputContainerEl.style.display = "block";
@@ -221,16 +227,16 @@ table, div {
 td {
   text-align: left;
 }
-#qrcode {
+#qr-code {
   overflow: hidden;
   display: inline-block;
   margin: auto;
 }
-#qrcode * {
+#qr-code * {
   width: 80px;
   height: 80px;
 }
-#qrcode img {
+#qr-code img {
   image-rendering: pixelated;
 }
 #link-icon {
