@@ -226,9 +226,13 @@ td {
   display: inline-block;
   margin: auto;
 }
-/* #qrcode img {
-  filter: blur(1px) contrast(3) opacity(0.9375);
-} */
+#qrcode * {
+  width: 80px;
+  height: 80px;
+}
+#qrcode img {
+  image-rendering: pixelated;
+}
 #link-icon {
   width: 0.9em;
   fill: blue;
