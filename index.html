@@ -21,19 +21,23 @@
   <div id="input-container" style="display: none;">
     <table>
       <tr>
-        <td>Payee:</td>
+        <td>H1</td>
+        <td><input id="title"/></td>
+      </tr>
+      <tr>
+        <td>📞</td>
         <td><input id="payee"/></td>
-        <td>Editable: <input type="checkbox" id="payee-is-editable"></td>
+        <td>🔒<input type="checkbox" id="payee-is-locked"></td>
       </tr>
       <tr>
-        <td>Amount:</td>
+        <td>💰</td>
         <td><input id="amount" type="number"/></td>
-        <td>Editable: <input type="checkbox" id="amount-is-editable"></td>
+        <td>🔒<input type="checkbox" id="amount-is-locked"></td>
       </tr>
       <tr>
-        <td>Message:</td>
-        <td><textarea id="message" maxlength="50" rows="4"></textarea></td>
-        <td>Editable: <input type="checkbox" id="message-is-editable"></td>
+        <td>💬</td>
+        <td><input id="message" maxlength="50"></textarea></td>
+        <td>🔒<input type="checkbox" id="message-is-locked"></td>
       </tr>
     </table>
     <button onclick="handleInput()">Create payment info</button>
