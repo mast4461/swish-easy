@@ -145,7 +145,13 @@
       swishLinkEl.href = getSwishLink(payee, payeeIsEditable, amount, amountIsEditable, message, messageIsEditable);
       const swishCodeQrData = getSwishQrCodeData(payee, payeeIsEditable, amount, amountIsEditable, message, messageIsEditable);
       console.log(swishCodeQrData);
-      new QRCode(qrcodeEl, swishCodeQrData);
+      new QRCode(qrcodeEl, {
+        text: swishCodeQrData,
+        colorDark: "#111111",
+        colorLight: "#ffffff",
+        // correctLevel: QRCode.CorrectLevel.H
+      });
+
       inputContainerEl.style.display = "none";
       outputContainerEl.style.display = "block";
 
