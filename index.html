@@ -88,6 +88,10 @@
       document.getElementById(elementId)[attributeName] = value;
     }
 
+    function fallback(value, defaultValue) {
+      return value === undefined || value === null || value === "" ? defaultValue : value;
+    }
+
     function setCreateLinkText() {
       const hashIndex = window.location.href.indexOf("#");
       const href = hashIndex === -1 ? window.location.href : window.location.href.substring(0, hashIndex);
@@ -174,8 +178,8 @@
       outputContainerEl.style.display = "block";
 
       setElAttr("title-out", "innerText", title);
-      setElAttr("payee-out", "innerText", payee === undefined || payee === null ? "?" : payee);
-      setElAttr("amount-out", "innerText", amount === undefined || amount === null ? "?" : amount);
+      setElAttr("payee-out", "innerText", fallback(payee, "?"));
+      setElAttr("amount-out", "innerText", fallback(amount, "?"));
       setElAttr("message-out", "innerText", message ? `"${message}"` : "");
     }
     
