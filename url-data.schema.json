@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Swish data object",
+  "description": "All properties optional.",
+  "required": [],
+  "properties": {
+    "t": {
+      "type": "string",
+      "description": "The title to show on the page. Optional."
+    },
+    "p": {
+      "type": "string",
+      "description": "Payee. Optional. The Swish number to transfer money to."
+    },
+    "a": {
+      "type": "integer",
+      "description": "Amount. Optional. The amount of money to transfer. The true maximum is some number of repeated nines, I think.",
+      "minimum": 1,
+      "maximum": 999999999
+    },
+    "m": {
+      "description": "Message. Newlines, emojis and most special characters are not allowed in Swish.",
+      "type": "string",
+      "maxLength": 50
+    },
+    "pe": {
+      "description": "Payee editable. Optional. Whether the payer can edit the payee in Swish. Any truthy value works.",
+      "type": "boolean",
+      "default": false
+    },
+    "ae": {
+      "description": "Amount editable. Optional. Whether the payer can edit the amount in Swish. Any truthy value works.",
+      "type": "boolean",
+      "default": false
+    },
+    "me": {
+      "description": "Message editable. Optional. Whether the payer can edit the payee in Swish. Any truthy value works.",
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
