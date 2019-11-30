@@ -114,9 +114,9 @@
         m: getElAttr("message", "value"),
       };
 
-      if (getElAttr("payee-is-locked", "checked")) { hashData.pe = 1; }
-      if (getElAttr("amount-is-locked", "checked")) { hashData.ae = 1; }
-      if (getElAttr("message-is-locked", "checked")) { hashData.me = 1; }
+      if (!getElAttr("payee-is-locked", "checked")) { hashData.pe = 1; }
+      if (!getElAttr("amount-is-locked", "checked")) { hashData.ae = 1; }
+      if (!getElAttr("message-is-locked", "checked")) { hashData.me = 1; }
 
       window.location.hash = encodeURIComponent(btoa(JSON.stringify(hashData)));
       restart();
