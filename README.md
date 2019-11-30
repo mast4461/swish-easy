@@ -5,6 +5,8 @@ On mobile they can simply click a link to open Swish.
 
 If not on mobile they can scan the QR code from Swish.
 
+Ambition: Make something simple that works.
+
 ## Create URLs programmatically
 
 You can create your own hashes for the URL programmatically:
