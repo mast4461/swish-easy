@@ -1,8 +1,21 @@
 # swish-easy
-A helper for prefilled swish payments. Put the data in the query string of the URL.
+A tiny website for prefilled swish payments. Create a link and send it to someone and they can open Swish with the payment details you specified prefilled.
 
-Run locally by opening e.g. `file:///Users/martin/dev/martin/swish-easy/index.html?t=hello&p=1234567890&pe&a=133&ae&m=jnnsdfknskfnkasndfkjnsdkjfnksdfksdfnsakfmlskmlfmalsdmflmasldfmlasmfsldfnfsdf&me`
+On mobile they can simply click a link to open Swish.
 
-or at github, [blank](https://mast4461.github.io/swish-easy/) or [prefilled](https://mast4461.github.io/swish-easy/?t=Title&p=1234567890&pe&a=133&ae&m=Clever%20stuff&me)
+If not on mobile they can scan the QR code from Swish.
 
-Tweak the query parameters of the URL.
+## Create URLs programmatically
+
+You can create your own hashes for the URL programmatically:
+1. Put your data in JSON according to [this JSON schema](./url-data.schema.json).
+2. JSON stringify the data.
+3. Base 64 encode the data.
+4. URL encode the data.
+
+For example, in the browser: 
+```
+urlHash = encodeURIComponent(btoa(JSON.stringify(data)));
+```
+
+_(In case this README is outdated, have a look at the code in [index.html](./index.html), or maybe just copy it)_
