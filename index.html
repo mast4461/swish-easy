@@ -245,15 +245,23 @@ td {
   margin: auto;
 }
 #qr-code * {
-  width: 80px;
-  height: 80px;
+  width: 256px;
+  height: 256px;
 }
 #qr-code img {
   image-rendering: pixelated;
+  animation: oscillateScale 1.5s alternate infinite ease-in;
 }
 #link-icon {
   width: 0.9em;
   fill: blue;
+}
+.smallprint {
+  font-size: 0.5em;
+}
+@keyframes oscillateScale {
+  0%   {transform: scale(0.1);}
+  100% {transform: scale(1);}
 }
 </style>
 
