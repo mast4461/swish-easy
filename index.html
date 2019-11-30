@@ -197,7 +197,7 @@
       const swishData = {
         version: 1,
         payee: {
-            value: p,
+            value: String(p).replace(/^0/, "+46"),
         },
         amount: {
           value: a,
