@@ -72,8 +72,8 @@
     let qrCode;
     restart();
     function restart() {
-      if (window.location.href.includes("?")) {
-        parseUrlAndUpdatePage();
+      if (window.location.hash.length > 1) {
+        parseHashAndUpdatePage();
       } else {
         showInputView();
       }
@@ -90,37 +90,50 @@
     function showInputView() {
       inputContainerEl.style.display = "block";
       outputContainerEl.style.display = "none";
+      clearHash();
+    }
+
+    function clearHash() {
+      window.location.hash = "";
     }
 
     function handleInput() {
-      const searchParams = new URLSearchParams({
-        t: encodeURIComponent(getElAttr("title", "value")),
-        p: encodeURIComponent(getElAttr("payee", "value")),
+      const hashData = {
+        t: getElAttr("title", "value"),
+        p: getElAttr("payee", "value"),
         a: getElAttr("amount", "value"),
-        m: encodeURIComponent(getElAttr("message", "value")),
-      });
+        m: getElAttr("message", "value"),
+      };
 
-      const searchString = searchParams.toString()
-        + (getElAttr("payee-is-locked", "checked") ? "" : "&pe")
-        + (getElAttr("amount-is-locked", "checked") ? "" : "&ae")
-        + (getElAttr("message-is-locked", "checked") ? "" : "&me");
+      if (getElAttr("payee-is-locked", "checked")) { hashData.pe = 1; }
+      if (getElAttr("amount-is-locked", "checked")) { hashData.ae = 1; }
+      if (getElAttr("message-is-locked", "checked")) { hashData.me = 1; }
 
-      window.location.search = searchString;
+      window.location.hash = encodeURIComponent(btoa(JSON.stringify(hashData)));
+      restart();
     }
 
-    function parseUrlAndUpdatePage() {
-      const params = new URL(window.location).searchParams;
-      const title = decodeURIComponent(params.get("t"));
-      const payee = decodeURIComponent(params.get("p"));
-      const payeeIsEditable = params.has("pe");
-      const amount = parseInt(params.get("a"), 10);
-      const amountIsEditable = params.has("ae");
-      let message = decodeURIComponent(params.get("m"));
+    function parseHashAndUpdatePage() {
+      let params;
+      try {
+        params = JSON.parse(atob(decodeURIComponent(window.location.hash.slice(1))));
+      } catch (error) {
+        console.error(error);
+        clearHash();
+        restart();
+      }
+      
+      const title = params.t;
+      const payee = params.p;
+      const payeeIsEditable = Boolean(params.pe);
+      const amount = params.a;
+      const amountIsEditable = Boolean(params.ae);
+      let message = params.m;
       if (message && message.length > 50) {
         // The max length of messages in Swish seems to be 50 characters
         message = message.substring(0, 47) + "...";
       }
-      const messageIsEditable = params.has("me");
+      const messageIsEditable = Boolean(params.me);
 
       console.log({
         title,
