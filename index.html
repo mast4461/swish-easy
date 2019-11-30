@@ -57,7 +57,7 @@
       <div id="qr-code"></div>
     </a>
     <hr>
-    <button onclick="showInputView()">New</button>
+    <span class="smallprint">Gör dina egna länkar på <a id="create-link"></a></span> 
   </div>
 
   <script>
@@ -70,6 +70,7 @@
     const qrCodeEl = document.getElementById("qr-code");
 
     let qrCode;
+    setCreateLinkText();
     restart();
     function restart() {
       if (window.location.hash.length > 1) {
@@ -85,6 +86,14 @@
 
     function setElAttr(elementId, attributeName, value) {
       document.getElementById(elementId)[attributeName] = value;
+    }
+
+    function setCreateLinkText() {
+      const hashIndex = window.location.href.indexOf("#");
+      const href = hashIndex === -1 ? window.location.href : window.location.href.substring(0, hashIndex);
+      const el = document.getElementById("create-link");
+      el.innerText = href;
+      el.href = href;
     }
 
     function showInputView() {
