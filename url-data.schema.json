@@ -25,17 +25,17 @@
       "maxLength": 50
     },
     "pe": {
-      "description": "Payee editable. Optional. Whether the payer can edit the payee in Swish. Any truthy value works.",
+      "description": "Payee editable. Optional. Whether the payer can edit the payee in Swish. Any truthy value works. Can simply be omitted to disallow editability.",
       "type": "boolean",
       "default": false
     },
     "ae": {
-      "description": "Amount editable. Optional. Whether the payer can edit the amount in Swish. Any truthy value works.",
+      "description": "Amount editable. Optional. Whether the payer can edit the amount in Swish. Any truthy value works. Can simply be omitted to disallow editability.",
       "type": "boolean",
       "default": false
     },
     "me": {
-      "description": "Message editable. Optional. Whether the payer can edit the message in Swish. Any truthy value works.",
+      "description": "Message editable. Optional. Whether the payer can edit the message in Swish. Any truthy value works. Can simply be omitted to disallow editability.",
       "type": "boolean",
       "default": false
     }
