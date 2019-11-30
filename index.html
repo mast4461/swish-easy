@@ -27,17 +27,17 @@
       <tr>
         <td>📞</td>
         <td><input id="payee"/></td>
-        <td>🔒<input type="checkbox" id="payee-is-locked"></td>
+        <td><input type="checkbox" id="payee-is-locked" checked></td>
       </tr>
       <tr>
         <td>💰</td>
         <td><input id="amount" type="number"/></td>
-        <td>🔒<input type="checkbox" id="amount-is-locked"></td>
+        <td><input type="checkbox" id="amount-is-locked"></td>
       </tr>
       <tr>
         <td>💬</td>
         <td><input id="message" maxlength="50"/></td>
-        <td>🔒<input type="checkbox" id="message-is-locked"></td>
+        <td><input type="checkbox" id="message-is-locked"></td>
       </tr>
     </table>
     <button onclick="handleInput()"> ✓ </button>
@@ -239,6 +239,7 @@ table, div {
 td {
   text-align: left;
   word-break: break-all;
+  position: relative;
 }
 button {
   font-size: 1em;
@@ -267,6 +268,24 @@ button {
 }
 .smallprint {
   font-size: 0.5em;
+}
+input[type="checkbox"]::after{
+  content: "🔒";
+  color: rgba(0,0,0,0.3);
+  font-size: 1.5em;
+  background-color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+input[type="checkbox"]:checked::after {
+  color: rgba(0,0,0,1);
+}
+input[type="checkbox"]:focus::after{
+  outline: inherit;
+  outline-offset: inherit;
 }
 @keyframes oscillate-scale {
   0%   {transform: scale(0.1);}
