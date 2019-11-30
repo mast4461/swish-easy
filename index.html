@@ -180,12 +180,12 @@
     }
     
     function getSwishQrCodeData(p, pe, a, ae, m, me) {
-      const lock = 7
+      const lockMask = 7
         - (p === undefined || p === null || pe ? 0 : 1)
         - (a === undefined || a === null || ae ? 0 : 2)
         - (m === undefined || m === null || me ? 0 : 4);
 
-      return `C${p || ""};${a || ""};${encodeURIComponent(m) || ""};${lock}`;
+      return `C${p || ""};${a || ""};${encodeURIComponent(m) || ""};${lockMask}`;
     }
 
     function getSwishLink(p, pe, a, ae, m, me) {
@@ -250,7 +250,7 @@ td {
 }
 #qr-code img {
   image-rendering: pixelated;
-  animation: oscillateScale 1.5s alternate infinite ease-in;
+  animation: oscillate-scale 1.5s alternate infinite ease-in;
 }
 #link-icon {
   width: 0.9em;
@@ -259,7 +259,7 @@ td {
 .smallprint {
   font-size: 0.5em;
 }
-@keyframes oscillateScale {
+@keyframes oscillate-scale {
   0%   {transform: scale(0.1);}
   100% {transform: scale(1);}
 }
