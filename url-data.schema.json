@@ -35,7 +35,7 @@
       "default": false
     },
     "me": {
-      "description": "Message editable. Optional. Whether the payer can edit the payee in Swish. Any truthy value works.",
+      "description": "Message editable. Optional. Whether the payer can edit the message in Swish. Any truthy value works.",
       "type": "boolean",
       "default": false
     }
